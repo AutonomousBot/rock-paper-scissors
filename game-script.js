@@ -1,24 +1,64 @@
 
+// create constant for the computer's options. Allows for comparison to determine winner.
 const options = ['Rock', 'Paper', 'Scissors'];
-const PlayerSelection = prompt("Rock, Paper Scissors?!")
-console.log(playRound(computerPlay(),PlayerSelection));
 
+// Call the game() function in order to play 5 rounds.
+game()
+
+// Function that sets the computer's option for the round. 
 function computerPlay() {
   return options[Math.floor(Math.random() * 3 )]
 }
 
-function playRound(computerSelection, PlayerSelection) {
-  if ((capitalize(PlayerSelection) == options[0] && computerSelection == options[2]) || (capitalize(PlayerSelection) == options[1] && computerSelection == options[0]) || (capitalize(PlayerSelection) == options[2] && computerSelection == options[1])) {
-    console.log("You Win! " + capitalize(PlayerSelection) + " Beats " + computerSelection)
+// Function that calls computerPlay, plays one round of RPS, determining the winner or a tie. 
+// Returns true if player wins, false if player loses and 0 if it is a tie.
+function playRound(computerSelection, playerSelection) {
+  if (playerSelection == options[0] && computerSelection == options[2] || playerSelection == options[1] && computerSelection == options[0] || playerSelection == options[2] && computerSelection == options[1]) {
+    console.log("You Win! " + playerSelection + " Beats " + computerSelection)
+    return true
   }
-  else if (capitalize(PlayerSelection) == computerSelection) {
-    console.log("Tie!")
+  else if (playerSelection == computerSelection) {
+    console.log("Tie! " + playerSelection + " and " + computerSelection)
+    return 0
   }
   else {
-    console.log("You Lose! " + computerSelection + " Beats " + capitalize(PlayerSelection))
+    console.log("You Lose! " + computerSelection + " Beats " + playerSelection)
+    return false
   }
 }
 
+// Function that capitalizes in order to make comparisons simple. 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+// Calls the playRound function five times and determines a winner, a loser or a tie.
+function game() {
+  let win = 0;
+  let lose = 0;
+  let results;
+  for (let i = 0; i < 5; i++) {
+    // prompt for the player's selection.
+    const playerSelection = capitalize(prompt("5 Round Match. Rock, Paper, Scissors?!"))
+    // create a variable to store the result of the round. Call the playRound function.
+    results = playRound(computerPlay(),playerSelection); 
+    if (results) {
+      win++
+    }
+    else if (results === false) {
+    lose++
+    }
+    console.log(i)
+    console.log(win)
+    console.log(lose)
+  }
+  if (win > lose) {
+    return console.log("Congratulations! You win!")
+  }
+  else if (lose > win) {
+    return console.log("Sorry! You Lose!")
+  }
+  else {
+    return console.log("Tie!")
+  }
 }
