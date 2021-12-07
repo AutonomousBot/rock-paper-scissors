@@ -40,22 +40,31 @@ function playRound(computerSelection, playerSelection) {
 
 // UI Work
 
-// Calls the playRound function five times and determines a winner, a loser or a tie.
-function game() {
-  let win = 0;
-  let lose = 0;
-  let results;
-  for (let i = 0; i < 5; i++) {
-    // prompt for the player's selection.
-    const playerSelection = capitalize(prompt("5 Round Match. Rock, Paper, Scissors?!"))
-    // create a variable to store the result of the round. Call the playRound function.
-    results = playRound(computerPlay(),playerSelection);
+// Play game on click. Calls UI functions and playRound.
+const game = function() {
 
-    if (results) { //Tally wins and losses and determines the winner. 
-      win++
-    }
-    else if (results === false) {
-    lose++
+  // Game functions.
+  displayRounds();
+  // Get computer's selection. 
+  computerSelection = computerPlay();
+  // Play one round and messages result in log.
+  tallyResults(playRound(computerSelection, event.target.id));
+
+  // UI functions.
+  // Calls functions for zawa effects.
+  if (rounds > 7 || win > 3 || lose > 3) {
+    visualZawa();
+    zawafade("in");
+    // Play ambience music.
+    const audio = new Audio('music/zawazawasfx.mp3');
+    audio.play();
+  }
+  // Move cards around as the game plays.
+  playCards();
+  // Prevents player from clicking cards and adding them to play during a round in progress.
+  if (!(document.getElementById("playingField").innerHTML.trim().length == 0)) {
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].style.pointerEvents = 'none';
     }
   }
   // Display message of the results of the game.
