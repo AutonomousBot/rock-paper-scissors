@@ -1,0 +1,76 @@
+html {
+  height: 100%;
+  background-color: grey;
+}
+body {
+  height: 100%;
+  margin: 0px 90px;
+  padding: 0px;
+}
+.game {
+  display: flex;
+  height: 100%;
+  width: 100%;  
+  padding: 0px;
+  margin: 0px;
+}
+
+#table {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow:inset 0 0 0 30px darkred;
+  background-color: darkblue;
+  min-width: 783px;
+  position: relative;
+}
+
+#playingField {
+  display: flex;
+  gap: 150px;
+}
+
+#computerPlay, 
+#playerSelection {
+  display: flex;
+  gap: 30px;
+}
+
+.playerButton {
+  height: 231px;
+  width: 168;
+}
+
+.scoreboard{
+  flex-grow: 1.5;
+  padding: 30px;
+  color: red;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#gameLog {
+  min-height: 20%;
+  border: 5px solid red;
+  flex-grow: 2;
+  overflow: auto;
+  max-width: 400px;
+  display: block;
+  padding: 4px;
+}
+
+.player {
+  text-align: center;
+  font-size: 40px;
+}
+
+.zawazawa {
+  position: fixed;
+  height: 50px;
+  width: 150px;
+}
