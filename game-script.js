@@ -38,10 +38,7 @@ function playRound(computerSelection, playerSelection) {
   }
 }
 
-// Function that capitalizes in order to make comparisons simple. 
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
+// UI Work
 
 // Calls the playRound function five times and determines a winner, a loser or a tie.
 function game() {
@@ -65,12 +62,56 @@ function game() {
   if (win > lose) {
     return console.log("Congratulations! You win!")
   }
-  else if (lose > win) {
-    return console.log("Sorry! You Lose!")
+}
+
+
+
+
+// Counts number of rounds and wins.
+function tallyResults(results) {
+  rounds++;
+  // Stores playRound results in a variable.
+  let resultsBool = results;
+  UIaddStar(resultsBool)
+  if (resultsBool) { win++; }
+  else if(resultsBool === false) { lose++; }
+  if (rounds > 5) {
+    findWinner();
   }
-  else {
-    return console.log("Tie!")
+}
+
+// Displays number of wins and loses 
+function UIaddStar(resultsBool) {
+  const star = document.createElement("img");
+  star.setAttribute("src", `images/Star1.png`);
+  star.setAttribute("alt", `Star , from anime series 'Kaiji'`);
+
+  if (resultsBool) {document.getElementById("playerStars").appendChild(star);}
+  else if (resultsBool === false) {document.getElementById("computerStars").appendChild(star);}
+}
+
+// Adds round results to the game log.
+function writeResults(msg) {
+  const a = document.getElementById("gameLog")
+  const b = document.createElement('p');
+  b.textContent = msg;
+  a.appendChild(b);
+}
+
+// Finds a winner and displays and alert to the user.
+function findWinner() {
+  if (win == 5) { alert("Congratulations, you win!") }
+  else if (lose == 5) { alert("Sorry, you lose!") }
+}
+
+function displayRounds() {
+  let t = document.getElementById("h1")
+  if (t.innerHTML.trim().length > 16) {
+    const a = t.textContent.replace(`${rounds-1}`, "")
+    t.textContent = a;
   }
+  const y = document.createTextNode(`${rounds}`);
+  t.appendChild(y);
 }
 
 // Old code.
