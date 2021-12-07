@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
+  <link rel="icon" href="data:,">
   <meta charset="UTF-8"/>
   <title>Rock Paper Scissors</title>
-  <script src="game-script.js"></script>
   <!-- External javascript -->
+  <script src="game-script.js" defer></script>
+  <!-- External css -->
+  <link rel="stylesheet" href="ui-style.css">
 </head>
 
 <body>
 
+<div class = "game">
+<div class = "scoreboard">
+  <h1 id = "h1">Scoreboard - Round </h1>
+  <div class = "starChart">
+      <p class = "player">Computer</p>
+      <div class = "stars" id="computerStars"></div>
+      <p class = "player">Player</p>
+      <div class = "stars" id="playerStars"></div>
+  </div>
+  <div id = "gameLog"><p>I do not own any images or sound effects featured in this game. All belong to the anime series Kaiji.</p></div>  
+</div>
+
+<div id = "table">
+  <div id = "computerPlay">
+    <img id = "computerCard0" src = "images/KaijiCardBack.png" alt = "Card back, from anime series 'Kaiji'">
+    <img id = "computerCard1" src = "images/KaijiCardBack.png" alt = "Card back, from anime series 'Kaiji'">
+    <img id = "computerCard2" src = "images/KaijiCardBack.png" alt = "Card back, from anime series 'Kaiji'">
+  </div>
+  
+  <div id = "playingField"></div>
+
+  <div id = "playerSelection">
+    <img class = "playerButton" id="Rock" src="images/Rock.jpg" alt="Rock, from anime series 'Kaiji'">
+    <img class = "playerButton" id="Paper" src="images/Paper.jpg" alt="Paper, from anime series 'Kaiji'">
+    <img class = "playerButton" id= "Scissors" src="images/Scissors.jpg" alt="Scissors, from anime series 'Kaiji'">
+  </div>
+</div>
+</div>
 </body>
 </html>
