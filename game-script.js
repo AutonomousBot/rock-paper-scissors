@@ -11,7 +11,7 @@ let rounds = 1;
 let win = 0;
 let lose = 0;
 
-// Function that sets the computer's option for the round. 
+// Function that sets the computer's option for the round.
 function computerPlay() {
   return options[Math.floor(Math.random() * 3 )]
 }
@@ -45,7 +45,7 @@ const game = function() {
 
   // Game functions.
   displayRounds();
-  // Get computer's selection. 
+  // Get computer's selection.
   computerSelection = computerPlay();
   // Play one round and messages result in log.
   tallyResults(playRound(computerSelection, event.target.id));
@@ -89,7 +89,7 @@ function tallyResults(results) {
   }
 }
 
-// Displays number of wins and loses 
+// Displays number of wins and loses
 function UIaddStar(resultsBool) {
   const star = document.createElement("img");
   star.setAttribute("src", `images/Star1.png`);
@@ -123,7 +123,7 @@ function displayRounds() {
   t.appendChild(y);
 }
 
-// Old code.
+// Old code from phase 1.
 // Calls the playRound function five times and determines a winner, a loser or a tie.
 // function game() {
 //   let win = 0;
@@ -135,7 +135,7 @@ function displayRounds() {
 //     // create a variable to store the result of the round. Call the playRound function.
 //     results = playRound(computerPlay(),playerSelection);
 
-//     if (results) { //Tally wins and losses and determines the winner. 
+//     if (results) { //Tally wins and losses and determines the winner.
 //       win++
 //     }
 //     else if (results === false) {
@@ -153,7 +153,7 @@ function displayRounds() {
 //     return console.log("Tie!")
 //   }
 // }
-// Function that capitalizes in order to make comparisons simple. 
+// Function that capitalizes in order to make comparisons simple.
 // function capitalize(string) {
 //   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 // }
