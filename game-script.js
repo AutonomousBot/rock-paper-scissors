@@ -203,16 +203,20 @@ function findWinner() {
   const d = document.getElementById("playingField")
   const e = document.createElement('p');
   if (win == 5) { 
-  e.textContent = "Congratulations, you win!";
-  d.appendChild(e);
+    e.textContent = "Congratulations, you win!";
+    d.appendChild(e);
+    // Stops player from clicking anymore.
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].style.pointerEvents = 'none';
+    }
   }
-  else if (lose == 5) {
-  e.textContent = "Congratulations, you win!";
-  d.appendChild(e);
-  }
-  // Stops player from clicking anymore.
-  for (let i = 0; i < cards.length; i++) {
-    cards[i].style.pointerEvents = 'none';
+    else if (lose == 5) {
+    e.textContent = "Congratulations, you win!";
+    d.appendChild(e);
+    // Stops player from clicking anymore.
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].style.pointerEvents = 'none';
+    }
   }
 }
 
