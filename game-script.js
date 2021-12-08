@@ -79,7 +79,89 @@ for (let i = 0; i < cards.length; i++) {
   cards[i].onmouseout = function(){cards[i].style.boxShadow = "";};
 }
 
+// Move cards around as the game plays.
+function playCards() {
+  let card = document.getElementById(event.target.id);
+  // Cards are played in the center. Hides played card in hand.
+  let computerNumber = Math.floor(Math.random() * 3);
+  document.getElementById(`computerCard${computerNumber}`).style.visibility = "hidden";
+  card.style.visibility = "hidden";
+  UICardPlay(card);
 
+  // Calls UIresetCards after 2 seconds.
+  setTimeout(UIresetCards, 2000, card, computerNumber)
+}
+
+// Reverts cards back to their original positions.
+function UIresetCards(card, computerNumber) {
+  // Removes cards in play.
+  const el = document.getElementById('temp');
+  el.remove();
+  const el1 = document.getElementById('temp1');
+  el1.remove();
+  // Reveals played cards back to respective hands.
+  card.style.visibility = "visible";
+  document.getElementById(`computerCard${computerNumber}`).style.visibility = "visible";
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].style.pointerEvents = "auto";
+  }
+  // Fades out atmosphere
+  zawafade();
+}
+
+// Creates cards for the playingField.
+function UICardPlay(playerCard) {
+  // Creates computer card play with its dimenszions and alt attribute.
+  const elem = document.createElement("img");
+  elem.setAttribute("id", "temp");
+  elem.setAttribute("height", "231");
+  elem.setAttribute("width", "168");
+  // Adds box shadow to distinguish from computer's card.
+  elem.style.boxShadow = "0px 0px 50px red";
+  elem.setAttribute("src", `images/${computerSelection}.jpg`);
+  elem.setAttribute("alt", `${computerSelection}, from anime series 'Kaiji'`);
+  document.getElementById("playingField").appendChild(elem);
+
+  // Creates player card play with its dimenszions and alt attribute.
+  const elem1 = document.createElement("img");
+  elem1.setAttribute("id", "temp1");
+  elem1.setAttribute("height", "231");
+  elem1.setAttribute("width", "168");
+  // Adds box shadow to distinguish from computer's card.
+  elem1.style.boxShadow = "0px 0px 50px green";
+  elem1.setAttribute("src", `images/${playerCard.id}.jpg`);
+  elem1.setAttribute("alt", `${playerCard.id}, from anime series 'Kaiji'`);
+  document.getElementById("playingField").appendChild(elem1);
+}
+
+// Adds tension when cards are played by having effects pop up.
+let Zawanumber = 2;
+function visualZawa() {
+  let x_pos = Math.random() * 1400;
+  let y_pos = 0;
+  for(let i = 0; i < Zawanumber; i++) {
+    const zawa = document.createElement("img");
+    zawa.setAttribute("src", `images/zawazawa.png`);
+    zawa.setAttribute("alt", `Zawazawa effect , from anime series 'Kaiji'`);
+    zawa.setAttribute("class", "zawazawa");
+    while (x_pos > 350 && x_pos < 1200) {x_pos = Math.random() * 1400;}
+    y_pos = Math.random() * 783;
+    zawa.style.left = `${x_pos}px`;
+    zawa.style.top = `${y_pos}px`;
+    document.body.insertBefore(zawa, null)
+    }
+    Zawanumber++;
+}
+
+// Creates a fade in and fade out effects for atmosphere images.
+function zawafade(entry) {
+  const zfade = document.getElementsByClassName("zawazawa")
+  for (let i = 0; i < zfade.length; i++) {
+    zfade[i].style.transition = '1.3s';
+    if(entry == "in") {zfade[i].style.opacity = 1;}
+    else {zfade[i].style.opacity = 0;}
+  }
+}
 
 
 
