@@ -67,11 +67,19 @@ const game = function() {
       cards[i].style.pointerEvents = 'none';
     }
   }
-  // Display message of the results of the game.
-  if (win > lose) {
-    return console.log("Congratulations! You win!")
-  }
+};
+
+// Adds events to cards for playerSelection. Calls game() for one round of RPS.
+const cards = document.getElementsByClassName("playerButton");
+for (let i = 0; i < cards.length; i++) {
+  cards[i].addEventListener('click', game);
+  // Adds shadow to cards when a player hovers over their selections.
+  cards[i].onmouseover = function(){cards[i].style.boxShadow = "0px 0px 50px green";};
+  // Removes shadow when player mouse is away from the selection.
+  cards[i].onmouseout = function(){cards[i].style.boxShadow = "";};
 }
+
+
 
 
 
