@@ -8,7 +8,7 @@ let rounds = 1;
 
 
 // declare number of wins and loses
-let win = 0;
+let win = 5;
 let lose = 0;
 
 // Function that sets the computer's option for the round.
@@ -92,7 +92,7 @@ function playCards() {
   setTimeout(UIresetCards, 2000, card, computerNumber)
 }
 
-// Reverts cards back to their original positions.
+// Reverts cards back to their original positions. Announces winner.
 function UIresetCards(card, computerNumber) {
   // Removes cards in play.
   const el = document.getElementById('temp');
@@ -107,6 +107,10 @@ function UIresetCards(card, computerNumber) {
   }
   // Fades out atmosphere
   zawafade();
+  // Declares winner.
+  if (rounds > 5) {
+    findWinner();
+  }
 }
 
 // Creates cards for the playingField.
@@ -174,9 +178,6 @@ function tallyResults(results) {
   UIaddStar(resultsBool)
   if (resultsBool) { win++; }
   else if(resultsBool === false) { lose++; }
-  if (rounds > 5) {
-    findWinner();
-  }
 }
 
 // Displays number of wins and loses
@@ -197,10 +198,22 @@ function writeResults(msg) {
   a.appendChild(b);
 }
 
-// Finds a winner and displays and alert to the user.
+// Finds a winner and displays to the user.
 function findWinner() {
-  if (win == 5) { alert("Congratulations, you win!") }
-  else if (lose == 5) { alert("Sorry, you lose!") }
+  const d = document.getElementById("playingField")
+  const e = document.createElement('p');
+  if (win == 5) { 
+  e.textContent = "Congratulations, you win!";
+  d.appendChild(e);
+  }
+  else if (lose == 5) {
+  e.textContent = "Congratulations, you win!";
+  d.appendChild(e);
+  }
+  // Stops player from clicking anymore.
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].style.pointerEvents = 'none';
+  }
 }
 
 function displayRounds() {

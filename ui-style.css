@@ -74,3 +74,8 @@ body {
   height: 50px;
   width: 150px;
 }
+
+#playingField {
+  color: red;
+  font-size: 50px;
+}
