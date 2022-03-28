@@ -8,7 +8,7 @@ let rounds = 1;
 
 
 // declare number of wins and loses
-let win = 5;
+let win = 0;
 let lose = 0;
 
 // Function that sets the computer's option for the round.
@@ -211,7 +211,7 @@ function findWinner() {
     }
   }
     else if (lose == 5) {
-    e.textContent = "Congratulations, you win!";
+    e.textContent = "Sorry, Computer wins!";
     d.appendChild(e);
     // Stops player from clicking anymore.
     for (let i = 0; i < cards.length; i++) {
